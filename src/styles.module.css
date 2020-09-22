@@ -1,0 +1,13 @@
+.viewport {
+  padding: 24px;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.option {
+  border: 3px solid black;
+  margin-bottom: 24px;
+  padding: 12px;
+}
