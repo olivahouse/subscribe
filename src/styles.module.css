@@ -1,13 +1,25 @@
 .viewport {
-  padding: 24px;
+  bottom: 0;
+  left: 0;
+  overflow-y: scroll;
+  position: fixed;
+  right: 0;
+  top: 0;
 }
 
 .container {
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
-.option {
-  border: 3px solid black;
-  margin-bottom: 24px;
-  padding: 12px;
+.heading {
+  flex-grow: 0;
+  margin: 0;
+  padding: 24px;
+}
+
+.content {
+  flex-grow: 1;
+  height: 0;
 }
