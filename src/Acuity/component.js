@@ -1,15 +1,30 @@
-import React from 'react';
-// import { parse } from 'query-string';
+import React, { useEffect } from 'react';
 
 import { getSrc } from './utils/getSrc';
 import styles from './styles.module.css';
 
-// const { provider } = parse(window.location.search);
+export const Component = ({ onSubmit, planId }) => {
+  const handleMessage = (event) => {
+    if (!event || !event.data || !event.origin.includes('acuity')) return;
 
-export const Component = ({ planId }) => (
-  <div className={styles.container}>
-    {planId && <iframe src={getSrc(planId)} />}
-  </div>
-);
+    if (!event.data.includes('acuity-appointment-scheduled')) return;
+
+    const [, email] = event.data.split(' ');
+
+    onSubmit(email);
+  };
+
+  useEffect(() => {
+    window.addEventListener('message', handleMessage);
+
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
+
+  return (
+    <div className={styles.container}>
+      {planId && <iframe src={getSrc(planId)} />}
+    </div>
+  );
+};
 
 Component.displayName = 'Acuity';
